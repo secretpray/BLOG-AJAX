@@ -1,0 +1,38 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+.min-width-btn {
+  min-width:100px;
+  margin:1px;
+}
+
+// Autohide class for Flash
+.fade-out {
+  animation: fade linear 1.5s 1 normal forwards !important;
+}
+
+@keyframes fade {
+    0% { opacity: 1; height: auto; }
+    80% { opacity: 0; height: auto; transform: translateY(-30%);}
+    100% { opacity: 0; height: 0;}
+}
+
+.img-responsive {
+  max-width: 1.5rem;
+  margin-right: .5rem;
+}
+

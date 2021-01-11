@@ -1,0 +1,23 @@
+<% if @post.comments.any?  %>
+  <% @post.comments.each do |comment| %>
+    <hr>
+    <div class='mt-4 mb-3 p-2 fs-6'><%= comment.body %></div>
+    <small>
+      <span >
+        Created at: <strong><%=time_ago_in_words(comment.created_at) %></strong> ago
+        by <strong><%= comment.user.username %></strong>&nbsp;(<%= comment.user.email %>)
+      </span>
+    </small>
+
+    <% if user_signed_in? && current_user.id == comment.user_id || user_signed_in? && current_user.admin %>
+      <div class="d-flex justify-content-between mt-2">
+        <div>
+          <%= link_to 'Edit', '#', class: 'btn btn-outline-dark mr-2', remote: true, data: { comment_id: comment.id } %>
+          <%= link_to 'Delete', '#', class: 'btn btn-danger mr-2' if @post.persisted? %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <h3 class='mt-4 mb-1'>No comments now</h2>
+<% end %>

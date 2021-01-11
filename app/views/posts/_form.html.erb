@@ -1,0 +1,27 @@
+<%= form_with(model: post, local: false, html: { id: "post_form" }) do |form| %>
+  <%= errors_for(post) %>
+   <%#= render 'shared/errors', resource: post %>
+
+  <div class="card mx-auto p-4">
+    
+      <div class="mb-3">
+        <%= form.label :title, class: 'form-label' %>
+        <%= form.text_field :title, class: 'form-control' %>
+      </div>
+    
+      <div class="mb-3">
+        <%= form.label :content, class: 'form-label' %>
+        <%= form.text_area :content, class: 'form-control', cols: 44, rows: 5  %>
+      </div>
+    
+      <%= form.hidden_field :user_id, value: "#{current_user.id}" %>
+
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= link_to 'Back', posts_path, class: 'btn btn-dark mr-2' %>
+        <%= link_to 'Show', post_path, class: 'btn btn-outline-primary mr-2' if post.persisted? %>
+      </div>
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

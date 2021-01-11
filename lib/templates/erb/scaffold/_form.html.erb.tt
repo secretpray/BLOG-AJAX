@@ -1,0 +1,32 @@
+<%%= form_with(model: <%= singular_table_name %>, local: true) do |form| %>
+  <%% if <%= singular_table_name %>.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <p class="font-weight-bold">
+        <%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:
+      </p>
+
+      <ul>
+        <%% <%= singular_table_name %>.errors.full_messages.each do |message| %>
+          <li><%%= message %></li>
+        <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+
+  <div class="card mx-auto p-4">
+    <% attributes.each do |attribute| %>
+      <div class="mb-3">
+        <%%= form.label :<%= attribute.name %>, class: 'form-label' %>
+        <%%= form.text_field :<%= attribute.name %>, class: 'form-control' %>
+      </div>
+    <% end %>
+
+    <div class="d-flex justify-content-between">
+      <div>
+        <%%= link_to 'Back', <%= index_helper %>_path, class: 'btn btn-dark mr-2' %>
+        <%%= link_to 'Show', <%= singular_table_name %>_path, class: 'btn btn-outline-primary mr-2' if <%= singular_table_name %>.persisted? %>
+      </div>
+      <%%= form.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<%% end %>

@@ -1,0 +1,9 @@
+- flash.each do |type, message|
+  - if type == 'alert'
+    #flash-alert.alert.alert-warning[role="alert"]
+      span.flash-inner-text
+      = message
+  -else
+    #flash-notice.alert.alert-primary[role="alert"]
+      span.flash-inner-text
+      = message

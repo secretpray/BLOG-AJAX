@@ -1,0 +1,11 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.fw-lighter
+  .container
+    .text-left
+      = link_to image_tag("logo.png", class: "img-responsive navbar-brand", id: "navbar-logo", alt: "logo"), root_path
+      = link_to 'Home', root_path, data: {item: 'Home'}, class: "text-left navbar-brand #{'fw-bolder' if current_page?(root_path) || current_page?(posts_path)}"
+    - if user_signed_in?
+      = link_to "Logout", destroy_user_session_path, method: :delete, data: {item: 'Logout'}, class: "text-right navbar-brand #{'fw-bolder' if current_page?(destroy_user_session_path)}"
+    - else
+      .text-right
+        = link_to 'Login', new_user_session_path, data: {item: 'Login'}, class: "navbar-brand #{'fw-bolder' if current_page?(new_user_session_path)}"
+        = link_to "Logon", new_user_registration_path, data: {item: 'Logon'}, class: "navbar-brand #{'fw-bolder' if current_page?(new_user_registration_path)}"

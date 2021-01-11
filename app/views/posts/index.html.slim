@@ -1,0 +1,18 @@
+#errors-post
+.d-flex.justify-content-between.align-items-baseline
+  h1.mr-auto.my-4 Posts
+  - if user_signed_in?
+    = link_to "New post", new_post_path, class: 'btn btn-primary', remote: true, id: 'new-post-button'
+
+#new_post
+
+table.table.table-hover
+  thead
+    tr
+      th Title
+      th Content
+      th
+  tbody id='posts-list'
+    = render 'post', posts: @posts
+
+

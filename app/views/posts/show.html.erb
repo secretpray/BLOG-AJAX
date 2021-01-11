@@ -1,0 +1,41 @@
+<h1>Show Post</h1>
+
+<div class="py-4">
+  <div class="card mb-2">
+    <div class='py-2 px-4 bg-dark text-white card-title'><%= @post.title %></div>
+      <div class='card-body' >
+        <div class='fs-5 card-text'><%= @post.content %></div>
+      </div>
+  </div>
+  <small class='mt-3'>
+    &nbsp;Created at: <strong><%= @post.created_at.strftime("%e %b %Y (%H:%M)") %></strong> by <strong><%= @post.user.username %></strong>&nbsp;(<%= @post.user.email %>)
+  </small>
+  <div class="mt-3">
+    <%= link_to 'Back', posts_path, class: 'btn btn-outline-dark mr-2' %>
+    <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-dark' %>
+  </div>
+
+  <br>
+  <div id="comments_list">
+    <%= render 'comments/comment', comment: @comment %>
+  </div>
+
+  <div id="errors-comment" class='mt-3'></div>
+
+  <hr>
+
+  <% if user_signed_in? %>
+    <h3 class='mt-4'>Add your comment</h3>
+
+    <%= form_for [@post, @post.comments.build], remote: true do |f| %>
+      <div class="mb-3">
+        <%= f.text_area :body, class: 'form-control', placeholder: 'Comment', cols: 44, rows: 5 %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.submit 'Create', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

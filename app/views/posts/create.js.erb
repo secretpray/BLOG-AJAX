@@ -1,0 +1,11 @@
+<% if @post.errors.present? %>
+  document.getElementById('errors-post').innerHTML = '<%= errors_for(@post) %>';
+<% else %>
+  <% return unless @post.persisted? %>
+  document.getElementById('posts-list').innerHTML = ''
+  document.getElementById('posts-list').insertAdjacentHTML('beforeend', '<%= j render @post, posts: @posts %>');
+  document.getElementById('errors-post').innerHTML = ''
+  document.getElementById('post_form').reset()
+  // document.getElementById('post_form').style.display = 'none'
+  // document.getElementById('new-post-button').innerText = 'New post';
+<% end %>

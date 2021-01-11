@@ -1,0 +1,12 @@
+<% if @comment.errors.present? %>
+  document.getElementById('errors-comment').innerHTML = '<%= errors_for(@comment) %>';
+<% else %>
+  <% return unless @comment.persisted? %>
+  document.getElementById('comments_list').innerHTML = ''
+  document.getElementById('comments_list').insertAdjacentHTML('beforeend', '<%= j render @comment %>');
+  document.getElementById('new_comment').reset();
+  document.getElementById('errors-comment').innerHTML = ''
+<% end %>
+
+
+
